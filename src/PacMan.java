@@ -68,7 +68,7 @@ public class PacMan extends JPanel {
         "X                 X",
         "XXXXXXXXXXXXXXXXXXX" 
     };
-    
+
     HashSet<Block> walls;
     HashSet<Block> foods;
     HashSet<Block> ghosts; 
@@ -90,5 +90,37 @@ public class PacMan extends JPanel {
         pacmanLeftImage = new ImageIcon(getClass().getResource("./pacmanLeft.png")).getImage();
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
+    }
+
+    public void loadMap() {
+        walls = new HashSet<Block>();
+        foods = new HashSet<Block>();
+        ghosts = new HashSet<Block>();
+
+        for (int r = 0; r < rowCount; r++) {
+            for (int c = 0; c < columnCount; c++) {
+                String row = tileMap[r];
+                char tileMapChar = row.charAt(c);
+
+                int x = c*tileSize;
+                int y = r*tileSize;
+
+                if (tileMapChar == 'X') { // block wall
+                    Block wall = new Block(wallImage, x, y, tileSize);
+                    walls.add(wall);
+                }
+                else if (tileMapChar == 'b') {// blue ghost 
+                    Block ghost = new BLock(blueGhostImage, x, y, tileSize, tileSize);
+                    ghosts.add(ghost);
+                }
+                else if (tileMapChar == 'b') { // blue ghost 
+                    Block ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
+                    ghosts.add.(ghost);
+
+                }
+                }
+            }
+
+        }
     }
 }
