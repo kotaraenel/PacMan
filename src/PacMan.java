@@ -90,7 +90,12 @@ public class PacMan extends JPanel {
         pacmanLeftImage = new ImageIcon(getClass().getResource("./pacmanLeft.png")).getImage();
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
-    }
+loadMap();
+System.out.println(walls.size());
+System.out.println(foods.size());
+System.out.println(ghosts.size());
+
+ }
 
     public void loadMap() {
         walls = new HashSet<Block>();
@@ -106,22 +111,22 @@ public class PacMan extends JPanel {
                 int y = r*tileSize;
 
                 if (tileMapChar == 'X') { // block wall
-                    Block wall = new Block(wallImage, x, y, tileSize);
+                    Block wall = new Block(wallImage, x, y, tileSize, tileSize);
                     walls.add(wall);
                 }
                 else if (tileMapChar == 'b') {// blue ghost 
-                    Block ghost = new BLock(blueGhostImage, x, y, tileSize, tileSize);
+                    Block ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 }
-                else if (tileMapChar == 'b') { // orange ghost 
+                else if (tileMapChar == 'o') { // orange ghost 
                     Block ghost = new Block(orangeGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 } 
-                else if (tileMapChar == 'b') { // pink ghost 
+                else if (tileMapChar == 'p') { // pink ghost 
                     Block ghost = new Block(pinkGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 } 
-                else if (tileMapChar == 'b') { // red ghost 
+                else if (tileMapChar == 'r') { // red ghost 
                     Block ghost = new Block(redGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 }
