@@ -91,13 +91,10 @@ public class PacMan extends JPanel {
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
 loadMap();
-System.out.println(walls.size());
-System.out.println(foods.size());
-System.out.println(ghosts.size());
 
  }
 
-    public void loadMap() {
+      public void loadMap() {
         walls = new HashSet<Block>();
         foods = new HashSet<Block>();
         ghosts = new HashSet<Block>();
@@ -110,38 +107,56 @@ System.out.println(ghosts.size());
                 int x = c*tileSize;
                 int y = r*tileSize;
 
-                if (tileMapChar == 'X') { // block wall
+                if (tileMapChar == 'X') { //block wall
                     Block wall = new Block(wallImage, x, y, tileSize, tileSize);
                     walls.add(wall);
                 }
-                else if (tileMapChar == 'b') {// blue ghost 
+                else if (tileMapChar == 'b') { //blue ghost
                     Block ghost = new Block(blueGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 }
-                else if (tileMapChar == 'o') { // orange ghost 
+                else if (tileMapChar == 'o') { //orange ghost
                     Block ghost = new Block(orangeGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
-                } 
-                else if (tileMapChar == 'p') { // pink ghost 
+                }
+                else if (tileMapChar == 'p') { //pink ghost
                     Block ghost = new Block(pinkGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
-                } 
-                else if (tileMapChar == 'r') { // red ghost 
+                }
+                else if (tileMapChar == 'r') { //red ghost
                     Block ghost = new Block(redGhostImage, x, y, tileSize, tileSize);
                     ghosts.add(ghost);
                 }
-                else if (tileMapChar == 'P') { // pacman
+                else if (tileMapChar == 'P') { //pacman
                     pacman = new Block(pacmanRightImage, x, y, tileSize, tileSize);
-                 }
-                 else if (tileMapChar == ' ') { // food
+                }
+                else if (tileMapChar == ' ') { //food
                     Block food = new Block(null, x + 14, y + 14, 4, 4);
                     foods.add(food);
-
-                 }
-
                 }
             }
-
         }
     }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        draw(g);
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(pacman.image, pacman.x, pacman.y, pacman.width, pacman.height, null);
+
+        for (Block ghost : ghosts) {
+            g.drawImage(ghost.image, ghost.x, ghost.y, ghost.width, ghost.height, null);
+        }
+
+        for (Block wall : walls) {
+            g.drawImage(wall.image, wall.x, wall.y, wall.width, wall.height, null);
+        }
+
+        g.setColor(Color.WHITE);
+        for (Block food : foods) {
+            g.fillRect(food.x, food.y, food.width, food.height);
+        }
+    }
+}
 
