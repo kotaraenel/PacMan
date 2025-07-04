@@ -93,7 +93,8 @@ public class PacMan extends JPanel implements ActionListener {
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
 loadMap();
-gameLoop = new Timer(50, this)
+gameLoop = new Timer(50, this);
+gameLoop.start();
 
  }
 
